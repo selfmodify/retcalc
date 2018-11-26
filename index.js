@@ -3,7 +3,7 @@ var app = new Vue({
     data: {
         labelStyle: {
             fontSize: '1.1em',
-            'min-width': '300px',
+            'min-width': '325px',
             display: 'inline-block'
         },
         valueStyle: {
@@ -11,6 +11,7 @@ var app = new Vue({
             display: 'inline-block'
         },
         titleStyle: {
+            'margin-top': '1em',
             fontWeight: 'bold',
             fontSize: '1.1em',
             background: 'lightblue'
@@ -28,9 +29,14 @@ var app = new Vue({
                 label: 'Retirement Age',
                 msg: 62
             },
+            {
+                id: 'yearsAvailableForGrowth',
+                label: 'Years available for growth.  T =',
+                msg: 22
+            },
         ],
         /* -------------- SALARY ----------- */
-        salaryTitle: 'Salary Questions',
+        salaryTitle: 'Savings & Growth',
         salaryItems: [
             {
                 id: 'currentSalary',
@@ -38,16 +44,27 @@ var app = new Vue({
                 msg: 50 * 1000
             },
             {
-                id: 'annualSavings',
-                label: 'Annual Savings (401K, IRA, CDs etc)',
-                msg: 10000
+                id: 'currentSavings',
+                label: 'Current Savings (401K, IRA, CDs etc).  P =',
+                msg: 150000
+            },
+            {
+                id: 'rateOfGrowth',
+                label: 'Rate of interest.  R =',
+                msg: 6
             },
         ],
         calculatedValue: 0
     },
     methods: {
         calculate: function (event) {
-            this.calculatedValue = this.salaryItems[0].msg * 10;
+            // Calculate the years available for growth
+            var P = this.salaryItems[1].msg;
+            var R = this.salaryItems[2].msg / 100;
+            var T = this.ageItems[1].msg - this.ageItems[0].msg;
+            this.yearsAvailableForGrowth = T;
+            var A = Math.round(P * Math.pow((1 + R), T));
+            this.calculatedValue = A;
         }
     }
 })
