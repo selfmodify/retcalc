@@ -2,17 +2,17 @@ var app = new Vue({
     el: '#ageQuestions',
     data: {
         labelStyle: {
-            fontSize: '1.3em',
-            'min-width': '200px',
+            fontSize: '1.1em',
+            'min-width': '300px',
             display: 'inline-block'
         },
         valueStyle: {
-            fontSize: '1.3em',
+            fontSize: '1.1em',
             display: 'inline-block'
         },
         titleStyle: {
             fontWeight: 'bold',
-            fontSize: '1.3em',
+            fontSize: '1.1em',
             background: 'lightblue'
         },
         /* -------------- AGE ----------- */
@@ -35,13 +35,19 @@ var app = new Vue({
             {
                 id: 'currentSalary',
                 label: 'Current Salary',
-                msg: 40
+                msg: 50 * 1000
             },
             {
-                id: 'retirementAge',
-                label: 'Retirement Age',
-                msg: 62
+                id: 'annualSavings',
+                label: 'Annual Savings (401K, IRA, CDs etc)',
+                msg: 10000
             },
-        ]
+        ],
+        calculatedValue: 0
+    },
+    methods: {
+        calculate: function (event) {
+            this.calculatedValue = this.salaryItems[0].msg * 10;
+        }
     }
 })

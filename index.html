@@ -6,13 +6,18 @@
         <div v-bind:style="titleStyle">{{ageTitle}}</div>
         <div v-for="item in ageItems">
             <div v-bind:style="labelStyle">{{ item.label }}</div>:
-            <input v-bind:style="valueStyle" v-model="item.msg" placeholder="edit me"></input>
+            <input v-bind:style="valueStyle" v-model="item.msg"></input>
         </div>
         <div v-bind:style="titleStyle">{{salaryTitle}}</div>
         <div v-for="item in salaryItems">
             <div v-bind:style="labelStyle">{{ item.label }}</div>:
-            <input v-bind:style="valueStyle" v-model="item.msg" placeholder="edit me"></input>
+            <input v-bind:style="valueStyle" v-model="item.msg"></input>
         </div>
+        <div>
+            <div v-bind:style="titleStyle">Total savings</div>:
+            <div v-bind:style="labelStyle">{{ calculatedValue }}</div>:
+        </div>
+        <button v-on:click="calculate">Calculate Total savings at retirement</button>
     </div>
 </div>
 
